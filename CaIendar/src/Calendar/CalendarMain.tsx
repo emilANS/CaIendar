@@ -10,6 +10,7 @@ import type {
   SpecialDayInterface,
 } from "../types/specialDayInterface";
 import type { LeftMenuInterface } from "../types/refs";
+import type { RepeatedDatesInterface } from "../types/repeatedDatesInterface";
 
 export default function CalendarMain() {
   // UseRefs
@@ -54,8 +55,14 @@ export default function CalendarMain() {
 
   const idOfUser = parseInt(sessionStorage.getItem("idOfUser")!);
 
+  const [repeatedDates, setRepeatedDates] = useState<
+    RepeatedDatesInterface[] | []
+  >([]);
+
   useEffect(() => {
     getSpecialDaysOfUser();
+
+    getRepeatedDates();
   }, []);
 
   useEffect(() => {
@@ -160,6 +167,17 @@ export default function CalendarMain() {
       .post(`${serverDirection}/showUserSpecialDays`, { id: idOfUser })
       .then((res) => {
         setSpecialDays(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  function getRepeatedDates() {
+    axios
+      .post(`${serverDirection}/getRepeatedDates`, { id: idOfUser })
+      .then((res) => {
+        console.log(res.data);
       })
       .catch((err) => {
         console.error(err);

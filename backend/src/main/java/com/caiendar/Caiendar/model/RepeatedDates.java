@@ -16,14 +16,14 @@ public class RepeatedDates {
 
     private String repeatedDateName;
 
-    private Long numberOfRepetitions;
+    private Integer numberOfRepetitions;
 
 
-    public Long getNumberOfRepetitions() {
+    public Integer getNumberOfRepetitions() {
         return numberOfRepetitions;
     }
 
-    public void setNumberOfRepetitions(Long numberOfRepetitions) {
+    public void setNumberOfRepetitions(Integer numberOfRepetitions) {
         this.numberOfRepetitions = numberOfRepetitions;
     }
 
