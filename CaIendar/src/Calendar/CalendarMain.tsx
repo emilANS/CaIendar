@@ -2,15 +2,24 @@ import { PiListDashes } from "react-icons/pi";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { serverDirection } from "../serverDir/ServerDir";
 import type {
   SpecialDayFromBackendInterface,
   SpecialDayInterface,
 } from "../types/specialDayInterface";
+import type { LeftMenuInterface } from "../types/refs";
 
 export default function CalendarMain() {
+  // UseRefs
+  const leftMenuRef = useRef<HTMLDivElement>(null);
+
+  const [sizeLeftMenu, setSizeLeftMenu] = useState<LeftMenuInterface>({
+    width: 0,
+    height: 0,
+  });
+
   // UI
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -48,6 +57,13 @@ export default function CalendarMain() {
   useEffect(() => {
     getSpecialDaysOfUser();
   }, []);
+
+  useEffect(() => {
+    if (leftMenuRef.current) {
+      const rect = leftMenuRef.current.getBoundingClientRect();
+      setSizeLeftMenu({ width: rect.width, height: rect.height });
+    }
+  }, [isMenuOpen]);
 
   for (let day = 1; day <= lastDay; day++) {
     days.push(new Date(year, month, day).getDate());
@@ -156,9 +172,12 @@ export default function CalendarMain() {
     <div className="flex">
       <span
         onClick={changeMenuBoolValue}
-        className={`absolute inline-block transition-transform duration-500 cursor-pointer z-20 ${
-          isMenuOpen ? "translate-x-[125px]" : "translate-x-0"
-        }`}
+        style={{
+          transform: isMenuOpen
+            ? `translateX(${sizeLeftMenu.width / 2.5}px)`
+            : "translateX(0)",
+        }}
+        className="absolute inline-block transition-transform duration-500 cursor-pointer z-20"
       >
         <PiListDashes
           className={`relative size-11 hover:cursor-pointer hover:text-gray-400 duration-300 transition`}
@@ -169,6 +188,7 @@ export default function CalendarMain() {
         className={`h-screen border-2 border-t-0 border-b-0 transition duration-500 z-10 ${
           isMenuOpen ? "translate-x-0 w-100" : "translate-x-[-400px] w-100"
         }`}
+        ref={leftMenuRef}
       >
         <div className="text-center hover:cursor-pointer">
           <h2 className="border-2 border-r-0 border-l-0 hover:bg-black hover:text-white transition duration-300 mt-12">
@@ -254,6 +274,20 @@ export default function CalendarMain() {
           </h1>
           <h1 className="text-2xl mt-2">{dateSelected?.getFullYear()}</h1>
 
+          {specialDays?.map((specialDay) => {
+            const formattedSpecialDay = new Date(
+              specialDay.specialDayDate + "T12:00:00"
+            );
+
+            if (formattedSpecialDay.getDate() === dateSelected?.getDate()) {
+              return (
+                <div>
+                  <h2>{specialDay.specialDayName}</h2>
+                </div>
+              );
+            }
+          })}
+
           {addSpecialDay ? (
             <div>
               <input
@@ -300,7 +334,7 @@ export default function CalendarMain() {
         onClick={goBackCalendar}
         className={`left-0 absolute self-center size-9 hover:cursor-pointer hover:text-gray-400 ${
           isMenuOpen
-            ? "translate-x-[255px] duration-500"
+            ? "translate-x-[245px] duration-500"
             : "translate-x-[0px] duration-700"
         }`}
       ></IoIosArrowBack>

@@ -4,8 +4,10 @@ import com.caiendar.Caiendar.DTO.SpecialDayRequestDTO;
 import com.caiendar.Caiendar.DTO.UserIdDTO;
 import com.caiendar.Caiendar.model.SpecialDays;
 import com.caiendar.Caiendar.model.User;
+import com.caiendar.Caiendar.repository.RepeatedDatesRepository;
 import com.caiendar.Caiendar.repository.SpecialDaysRepository;
 import com.caiendar.Caiendar.repository.UserRepository;
+import com.caiendar.Caiendar.service.RepeatedDataService;
 import com.caiendar.Caiendar.service.SpecialDaysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +29,20 @@ public class SpecialDaysController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RepeatedDatesRepository repeatedDatesRepository;
+
+    @Autowired
+    RepeatedDataService repeatedDataService;
+
     @PostMapping("/createSpecialDay")
     public ResponseEntity<SpecialDays> createSpecialDay(@RequestBody SpecialDayRequestDTO specialDays) {
 
         SpecialDays specialDayToDb = specialDaysService.addUserInfoToSpecialDay(specialDays);
 
         specialDaysRepository.save(specialDayToDb);
+
+        String[] name = specialDayToDb.getSpecialDayName().split(" ");
 
         return ResponseEntity.ok(specialDayToDb);
 

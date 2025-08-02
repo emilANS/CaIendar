@@ -1,12 +1,9 @@
 package com.caiendar.Caiendar.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class SpecialDays {
