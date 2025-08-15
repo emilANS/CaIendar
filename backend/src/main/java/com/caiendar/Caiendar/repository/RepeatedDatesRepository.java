@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface RepeatedDatesRepository extends JpaRepository<RepeatedDates, Long> {
     Optional<RepeatedDates> findByRepeatedDateNameAndUserId(String name, Long userId);
 
-    @Query("SELECT r FROM RepeatedDates r WHERE r.userId = :userId AND r.numberOfRepetitions > 4")
+    @Query("SELECT r FROM RepeatedDates r WHERE r.userId = :userId AND r.numberOfRepetitions > 2")
     List<RepeatedDates> findByUserId(@Param("userId") Long userId);
 }

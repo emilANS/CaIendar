@@ -5,6 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class RepeatedDates {
 
@@ -18,6 +22,19 @@ public class RepeatedDates {
 
     private Integer numberOfRepetitions;
 
+    private List<LocalDate> specialDayDate = new ArrayList<>();
+
+    public void addSpecialDayDate(LocalDate date) {
+        this.specialDayDate.add(date);
+    }
+
+    public List<LocalDate> getSpecialDayDate() {
+        return specialDayDate;
+    }
+
+    public void setSpecialDayDate(List<LocalDate> specialDayDate) {
+        this.specialDayDate = specialDayDate;
+    }
 
     public Integer getNumberOfRepetitions() {
         return numberOfRepetitions;

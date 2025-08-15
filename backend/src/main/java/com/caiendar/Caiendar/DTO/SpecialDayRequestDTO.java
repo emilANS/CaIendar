@@ -7,6 +7,16 @@ public class SpecialDayRequestDTO {
     public LocalDate date;
     public String specialDayContent;
     public Long idOfUser;
+    public String language;
+
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
     public LocalDate getDate() {
         return date;

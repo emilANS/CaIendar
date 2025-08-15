@@ -48,7 +48,7 @@ public class SpecialDaysController {
 
         String[] name = specialDayToDb.getSpecialDayName().split(" ");
 
-        repeatedDataService.checkForSpecialRepeatedDates(name, specialDays.getIdOfUser());
+        repeatedDataService.checkForSpecialRepeatedDates(name, specialDays.getIdOfUser(), specialDays.getLanguage(), specialDays.getDate());
 
         return ResponseEntity.ok(specialDayToDb);
 

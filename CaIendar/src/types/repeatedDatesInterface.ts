@@ -3,4 +3,5 @@ export interface RepeatedDatesInterface {
     userId: number;
     repeatedDateName: string;
     numberOfRepetitions: number;
+    specialDayDate: Date[];
 }
