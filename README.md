@@ -3,6 +3,14 @@ This is a calendar with a matrix/hacker style it have features like, a functiona
 if you want to run it first do npm install in CaIendar and then install the dependencies in your favorite java ide i used intellijIdea
 
 this project is made with Typescript, TailwindCss, Java, Spring Boot, React
-<img width="1653" height="764" alt="Captura de pantalla 2025-09-06 225335" src="https://github.com/user-attachments/assets/2c9294f7-2748-4263-a7bd-5b12a6fbb3b8" />
-<img width="1915" height="892" alt="Captura de pantalla 2025-09-06 225404" src="https://github.com/user-attachments/assets/de44b913-a13d-439b-a29c-01c6725fe5e2" />
-<img width="1919" height="909" alt="Captura de pantalla 2025-09-06 225422" src="https://github.com/user-attachments/assets/4bfd9367-d1ab-410e-b949-827cb2643a92" />
+
+<h2>In this video you can see how the saving date works</h2>
+
+https://github.com/user-attachments/assets/0cb43a13-a1f5-499b-8906-6d06a99e83b6
+
+
+
+https://github.com/user-attachments/assets/ce045edb-1435-4892-af5d-feffdc139b30
+
+<h2>In this video you see how the event system works, it takes a repeated date like lucia that is my dog and then guides you to every day that have the name lucia
+this system detects specials days that have names of places, of persons, or situations like a date, birthday etc</h2>
