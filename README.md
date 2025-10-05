@@ -17,7 +17,7 @@ this system detects specials days that have names of places, of persons, or situ
 
 <h2>In this project i learned to</h2>
 <ul>
-  <li>Operate in the programming language Java</li>
+  <li>Operate in the Java Programming language</li>
   <li>Create Backends with spring boot</li>
   <li>Use tailwindCss animations</li>
   <li>Make an extravagant theme like a hacker or matrix theme</li>
